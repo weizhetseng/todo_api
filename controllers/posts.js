@@ -95,11 +95,13 @@ const posts = {
     try {
       const id = req.url.split('/').pop()
       await Todo.findByIdAndDelete(id)
+      const todos = await Todo.find({})
       res.writeHead(200, headers)
       res.write(
         JSON.stringify({
           status: 'success',
           message: '成功',
+          data: todos,
         })
       )
       res.end()
