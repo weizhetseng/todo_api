@@ -22,6 +22,8 @@ const app = async (req, res) => {
     })
   } else if (req.url === '/API/deleteAllTodo' && req.method === 'DELETE') {
     postController.deleteAll({ req, res })
+  } else if (req.url === '/API/deleteDoneTodo' && req.method === 'DELETE') {
+    postController.deleteDone({ req, res })
   } else if (req.url.startsWith('/API/deleteTodo/') && req.method === 'DELETE') {
     postController.deletePosts({ req, res })
   } else if (req.url === '/API/PatchTodo' && req.method === 'PATCH') {

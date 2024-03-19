@@ -91,6 +91,31 @@ const posts = {
     }
   },
 
+  async deleteDone({ req, res }) {
+    try {
+      await Todo.deleteMany({ status: true })
+      const todos = await Todo.find({})
+      res.writeHead(200, headers)
+      res.write(
+        JSON.stringify({
+          status: 'success',
+          message: '成功',
+          data: todos,
+        })
+      )
+      res.end()
+    } catch (error) {
+      res.writeHead(400, headers)
+      res.write(
+        JSON.stringify({
+          status: 'false',
+          message: '失敗',
+        })
+      )
+      res.end()
+    }
+  },
+
   async deletePosts({ req, res }) {
     try {
       const id = req.url.split('/').pop()
