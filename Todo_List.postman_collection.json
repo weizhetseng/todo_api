@@ -91,13 +91,34 @@
 			"response": []
 		},
 		{
+			"name": "刪除完成列表",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://todo-api-rptc.onrender.com/API/deleteDoneTodo",
+					"protocol": "https",
+					"host": [
+						"todo-api-rptc",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"API",
+						"deleteDoneTodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "刪除單筆代辦",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\":\"65f9099d3fe66e10cda25297\"\n}",
+					"raw": "{\n    \"id\":\"65f909a03fe66e10cda2529a\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

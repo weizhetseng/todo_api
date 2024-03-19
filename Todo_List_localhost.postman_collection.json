@@ -97,21 +97,12 @@
 			"response": []
 		},
 		{
-			"name": "刪除單筆代辦",
+			"name": "刪除完成列表",
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\":\"65f9019dc2d10c487e4ec1aa\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:3000/API/deleteTodo",
+					"raw": "http://localhost:3000/API/deleteDoneTodo",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -119,7 +110,37 @@
 					"port": "3000",
 					"path": [
 						"API",
-						"deleteTodo"
+						"deleteDoneTodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆代辦",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/API/deleteTodo/65f909a33fe66e10cda2529d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"API",
+						"deleteTodo",
+						"65f909a33fe66e10cda2529d"
 					]
 				}
 			},
