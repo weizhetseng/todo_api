@@ -91,31 +91,18 @@ const posts = {
     }
   },
 
-  async deletePosts({ stream, size, req, res }) {
+  async deletePosts({ req, res }) {
     try {
-      const body = JSON.parse(Buffer.concat(stream, size).toString())
-      if (body.id !== '' && body.id !== undefined) {
-        await Todo.findByIdAndDelete(body.id)
-        const todos = await Todo.find({})
-        res.writeHead(200, headers)
-        res.write(
-          JSON.stringify({
-            status: 'success',
-            message: '成功',
-            data: todos,
-          })
-        )
-        res.end()
-      } else {
-        res.writeHead(400, headers)
-        res.write(
-          JSON.stringify({
-            status: 'false',
-            message: '失敗',
-          })
-        )
-        res.end()
-      }
+      const id = req.url.split('/').pop()
+      await Todo.findByIdAndDelete(id)
+      res.writeHead(200, headers)
+      res.write(
+        JSON.stringify({
+          status: 'success',
+          message: '成功',
+        })
+      )
+      res.end()
     } catch (error) {
       res.writeHead(400, headers)
       res.write(

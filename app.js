@@ -1,4 +1,5 @@
 const http = require('http')
+const headers = require('./headers')
 
 const postController = require('./controllers/posts')
 const httpController = require('./controllers/http')
@@ -21,10 +22,8 @@ const app = async (req, res) => {
     })
   } else if (req.url === '/API/deleteAllTodo' && req.method === 'DELETE') {
     postController.deleteAll({ req, res })
-  } else if (req.url === '/API/deleteTodo' && req.method === 'DELETE') {
-    req.on('end', async () => {
-      postController.deletePosts({ stream, size, req, res })
-    })
+  } else if (req.url.startsWith('/API/deleteTodo/') && req.method === 'DELETE') {
+    postController.deletePosts({ req, res })
   } else if (req.url === '/API/PatchTodo' && req.method === 'PATCH') {
     req.on('end', async () => {
       postController.patchPosts({ stream, size, req, res })
