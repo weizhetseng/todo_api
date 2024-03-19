@@ -1,6 +1,3 @@
-const http = require('http')
-const headers = require('./headers')
-
 const postController = require('./controllers/posts')
 const httpController = require('./controllers/http')
 require('./connections')
@@ -37,5 +34,4 @@ const app = async (req, res) => {
   }
 }
 
-const server = http.createServer(app)
-server.listen(process.env.PORT || 3000)
+module.exports = app
