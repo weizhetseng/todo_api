@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "0fbcf3ad-6e19-479d-8184-c35bf54de0fa",
+		"name": "Todo_List",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24611550"
+	},
+	"item": [
+		{
+			"name": "取得代辦列表",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://todo-api-rptc.onrender.com/API/getTodo",
+					"protocol": "https",
+					"host": [
+						"todo-api-rptc",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"API",
+						"getTodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增單筆代辦",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"test3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://todo-api-rptc.onrender.com/API/postTodo",
+					"protocol": "https",
+					"host": [
+						"todo-api-rptc",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"API",
+						"postTodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除所有代辦",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://todo-api-rptc.onrender.com/API/deleteAllTodo",
+					"protocol": "https",
+					"host": [
+						"todo-api-rptc",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"API",
+						"deleteAllTodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆代辦",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"65f9099d3fe66e10cda25297\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://todo-api-rptc.onrender.com/API/deleteTodo",
+					"protocol": "https",
+					"host": [
+						"todo-api-rptc",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"API",
+						"deleteTodo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改單筆代辦",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\":\"65f909a33fe66e10cda2529d\",\n  \"title\":\"test2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://todo-api-rptc.onrender.com/API/PatchTodo",
+					"protocol": "https",
+					"host": [
+						"todo-api-rptc",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"API",
+						"PatchTodo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
