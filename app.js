@@ -1,3 +1,5 @@
+const http = require('http')
+
 const postController = require('./controllers/posts')
 const httpController = require('./controllers/http')
 require('./connections')
@@ -34,4 +36,5 @@ const app = async (req, res) => {
   }
 }
 
-module.exports = app
+const server = http.createServer(app)
+server.listen(process.env.PORT || 3000)
