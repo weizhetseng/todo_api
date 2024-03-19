@@ -1,5 +1,5 @@
 const Todo = require('../model')
-const headers = require('../headers')
+const headers = require('../service/headers')
 
 const posts = {
   async getPosts({ req, res }) {

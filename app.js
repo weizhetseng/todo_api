@@ -1,37 +1,8 @@
-const postController = require('./controllers/posts')
-const httpController = require('./controllers/http')
+const routes = require('./routes')
 require('./connections')
 
 const app = async (req, res) => {
-  let stream = []
-  let size = 0
-
-  req.on('data', (chunk) => {
-    stream.push(chunk)
-    size += chunk.length
-  })
-
-  if (req.url === '/API/getTodo' && req.method === 'GET') {
-    postController.getPosts({ req, res })
-  } else if (req.url === '/API/postTodo' && req.method === 'POST') {
-    req.on('end', async () => {
-      postController.addPosts({ stream, size, req, res })
-    })
-  } else if (req.url === '/API/deleteAllTodo' && req.method === 'DELETE') {
-    postController.deleteAll({ req, res })
-  } else if (req.url === '/API/deleteDoneTodo' && req.method === 'DELETE') {
-    postController.deleteDone({ req, res })
-  } else if (req.url.startsWith('/API/deleteTodo/') && req.method === 'DELETE') {
-    postController.deletePosts({ req, res })
-  } else if (req.url === '/API/PatchTodo' && req.method === 'PATCH') {
-    req.on('end', async () => {
-      postController.patchPosts({ stream, size, req, res })
-    })
-  } else if (req.method === 'OPTIONS') {
-    httpController.cors({ req, res })
-  } else {
-    httpController.notFound({ req, res })
-  }
+  routes(req, res)
 }
 
 module.exports = app
