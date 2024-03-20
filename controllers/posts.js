@@ -118,18 +118,30 @@ const posts = {
 
   async deletePosts({ req, res }) {
     try {
-      const id = req.url.split('/').pop()
-      await Todo.findByIdAndDelete(id)
-      const todos = await Todo.find({})
-      res.writeHead(200, headers)
-      res.write(
-        JSON.stringify({
-          status: 'success',
-          message: '成功',
-          data: todos,
-        })
-      )
-      res.end()
+      const body = req.url.split('/').pop()
+      const id = await Todo.findById(body)
+      if (id !== null) {
+        await Todo.findByIdAndDelete(id)
+        const todos = await Todo.find({})
+        res.writeHead(200, headers)
+        res.write(
+          JSON.stringify({
+            status: 'success',
+            message: '成功',
+            data: todos,
+          })
+        )
+        res.end()
+      } else {
+        res.writeHead(400, headers)
+        res.write(
+          JSON.stringify({
+            status: 'false',
+            message: '資料不存在',
+          })
+        )
+        res.end()
+      }
     } catch (error) {
       res.writeHead(400, headers)
       res.write(
@@ -145,15 +157,12 @@ const posts = {
   async patchPosts({ stream, size, req, res }) {
     try {
       const body = JSON.parse(Buffer.concat(stream, size).toString())
-      if (
-        body.id !== '' &&
-        body.id !== undefined &&
-        body.status !== '' &&
-        body.status !== undefined
-      ) {
+      const id = await Todo.findById(body.id)
+      if (id !== null && body.status !== '' && body.status !== undefined) {
         await Todo.findByIdAndUpdate(body.id, {
           status: body.status,
         })
+
         const todos = await Todo.find({})
         res.writeHead(200, headers)
         res.write(
@@ -164,12 +173,7 @@ const posts = {
           })
         )
         res.end()
-      } else if (
-        body.id !== '' &&
-        body.id !== undefined &&
-        body.title !== '' &&
-        body.title !== undefined
-      ) {
+      } else if (id !== null && body.title !== '' && body.title !== undefined) {
         await Todo.findByIdAndUpdate(body.id, {
           title: body.title,
         })
@@ -202,6 +206,7 @@ const posts = {
         })
       )
       res.end()
+      console.log(error)
     }
   },
 }
