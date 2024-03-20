@@ -192,7 +192,7 @@ const posts = {
         res.write(
           JSON.stringify({
             status: 'false',
-            message: '失敗',
+            message: '此筆資料不存在或是title,status未填寫',
           })
         )
         res.end()
